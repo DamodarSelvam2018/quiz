@@ -27,6 +27,7 @@ class QuizBrain {
   void nextQuestion() {
     if (_questionNumber < _questionBank.length - 1) {
       print(_questionNumber.toString() + 'in nextQuestion');
+      print(_questionBank.length.toString() + ' _questionBank.length');
       _questionNumber++;
       print(_questionNumber.toString() + 'in nextQuestion');
     }
@@ -43,6 +44,11 @@ class QuizBrain {
   String getQuestionText() {
     print(_questionNumber.toString() + 'in getQuestionText');
     return _questionBank[_questionNumber].questionText;
+  }
+
+  String getQuestionText1(int index) {
+    print(_questionNumber.toString() + 'in getQuestionText1');
+    return _questionBank[index].questionText;
   }
 
   String getAnswers(int index) {
@@ -81,7 +87,7 @@ class QuizBrain {
     }
   }
 
-  //TODO: Step 4 part B - Create a reset() method here that sets the questionNumber back to 0.
+  //TODO: Step 4 part B - Create a reset() method here that sets the questionNumber back to index 0.
   void reset() {
     _questionNumber = 0;
   }

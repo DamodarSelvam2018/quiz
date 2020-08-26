@@ -62,6 +62,7 @@ class _QuizPageState extends State<QuizPage> {
                 onPressed: () {
                   //quizBrain.nextQuestion();
                   quizBrain.reset();
+
                   Navigator.pop(context);
                 },
               )
@@ -153,105 +154,114 @@ class _QuizPageState extends State<QuizPage> {
                 )
               ]).show();
         }
+        quizBrain.nextQuestion();
       }
     });
-    if (quizBrain.isFinished() == false) {
-      quizBrain.nextQuestion();
-    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Expanded(
-            flex: 5,
-            child: Padding(
-              padding: EdgeInsets.all(10.0),
-              child: Center(
-                child: Text(
-                  quizBrain.getQuestionText(),
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 25.0,
-                    color: Colors.white,
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        backgroundColor: Colors.black,
+        appBar: AppBar(
+          title: Text('Manners Matters'),
+          backgroundColor: Colors.grey,
+        ),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Expanded(
+              flex: 5,
+              child: Padding(
+                padding: EdgeInsets.all(10.0),
+                child: Center(
+                  child: Text(
+                    quizBrain.getQuestionText(),
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 25.0,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-          Expanded(
-            child: Padding(
-              padding: EdgeInsets.all(15.0),
-              child: FlatButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(18.0),
-                    side: BorderSide(color: Colors.grey)),
-                textColor: Colors.white,
-                color: Colors.grey,
-                child: Text(
-                  quizBrain.getAnswers(0),
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18.0,
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.all(15.0),
+                child: FlatButton(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18.0),
+                      side: BorderSide(color: Colors.grey)),
+                  textColor: Colors.white,
+                  color: Colors.grey,
+                  child: Text(
+                    quizBrain.getAnswers(0),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18.0,
+                    ),
                   ),
+                  onPressed: () {
+                    //The user picked true.
+                    checkAnswer(quizBrain.getAnswers(0));
+                    _ratingBar(myChoice);
+                    //quizBrain.nextQuestion();
+                  },
                 ),
-                onPressed: () {
-                  //The user picked true.
-                  checkAnswer(quizBrain.getAnswers(0));
-                  //quizBrain.nextQuestion();
-                },
               ),
             ),
-          ),
-          Expanded(
-            child: Padding(
-              padding: EdgeInsets.all(15.0),
-              child: FlatButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(18.0),
-                    side: BorderSide(color: Colors.grey)),
-                color: Colors.grey,
-                child: Text(
-                  quizBrain.getAnswers(1),
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    color: Colors.white,
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.all(15.0),
+                child: FlatButton(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18.0),
+                      side: BorderSide(color: Colors.grey)),
+                  color: Colors.grey,
+                  child: Text(
+                    quizBrain.getAnswers(1),
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      color: Colors.white,
+                    ),
                   ),
+                  onPressed: () {
+                    //The user picked false.
+                    checkAnswer(quizBrain.getAnswers(1));
+                    _ratingBar(myChoice);
+                    //quizBrain.nextQuestion();
+                  },
                 ),
-                onPressed: () {
-                  //The user picked false.
-                  checkAnswer(quizBrain.getAnswers(1));
-                  //quizBrain.nextQuestion();
-                },
               ),
             ),
-          ),
-          Expanded(
-            child: Padding(
-              padding: EdgeInsets.all(15.0),
-              child: FlatButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(18.0),
-                    side: BorderSide(color: Colors.grey)),
-                color: Colors.grey,
-                child: Text(
-                  quizBrain.getAnswers(2),
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    color: Colors.white,
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.all(15.0),
+                child: FlatButton(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18.0),
+                      side: BorderSide(color: Colors.grey)),
+                  color: Colors.grey,
+                  child: Text(
+                    quizBrain.getAnswers(2),
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      color: Colors.white,
+                    ),
                   ),
+                  onPressed: () {
+                    //The user picked false.
+                    checkAnswer(quizBrain.getAnswers(2));
+                    _ratingBar(myChoice);
+                    //quizBrain.nextQuestion();
+                  },
                 ),
-                onPressed: () {
-                  //The user picked false.
-                  checkAnswer(quizBrain.getAnswers(2));
-                  //quizBrain.nextQuestion();
-                },
               ),
             ),
-          ),
 //        Expanded(child: _ratingBar(myChoice))
 
 //        Row(
@@ -270,7 +280,10 @@ class _QuizPageState extends State<QuizPage> {
 //              )
 //            ],
 //          ),
-        ]);
+          ],
+        ),
+      ),
+    );
   }
 
   Widget _ratingBar(String myChoice) {
