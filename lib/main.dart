@@ -1,117 +1,317 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
+//TODO: Step 2 - Import the rFlutter_Alert package here.
+import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:smooth_star_rating/smooth_star_rating.dart';
+import 'quiz_brain.dart';
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+QuizBrain quizBrain = QuizBrain();
+
+void main() => runApp(Quizzler());
+
+class Quizzler extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-        // This makes the visual density adapt to the platform that you run
-        // the app on. For desktop platforms, the controls will be smaller and
-        // closer together (more dense) than on mobile platforms.
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+      title: 'Manners Matter',
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        backgroundColor: Colors.grey.shade900,
+        body: SafeArea(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10.0),
+            child: QuizPage(),
+          ),
+        ),
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
+class QuizPage extends StatefulWidget {
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _QuizPageState createState() => _QuizPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+class _QuizPageState extends State<QuizPage> {
+  //List<Icon> scoreKeeper = [];
+  String myChoice = '';
+  String buildWidg;
 
-  void _incrementCounter() {
+  void checkAnswer(String userPickedAnswer) {
+    //bool correctAnswer = quizBrain.getCorrectAnswer();
+
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
+      //TODO: Step 4 - Use IF/ELSE to check if we've reached the end of the quiz. If so,
+      //On the next line, you can also use if (quizBrain.isFinished()) {}, it does the same thing.
+      if (quizBrain.isFinished() == true) {
+        //TODO Step 4 Part A - show an alert using rFlutter_alert,
+
+        //This is the code for the basic alert from the docs for rFlutter Alert:
+        //Alert(context: context, title: "RFLUTTER", desc: "Flutter is awesome.").show();
+
+        //Modified for our purposes:
+        Alert(
+            context: context,
+            title: 'Finished!',
+            desc: 'You\'ve reached the end of the quiz.',
+            buttons: [
+              DialogButton(
+                child: Text("Home"),
+                onPressed: () {
+                  //quizBrain.nextQuestion();
+                  quizBrain.reset();
+                  Navigator.pop(context);
+                },
+              )
+            ]).show();
+
+        //TODO Step 4 Part C - reset the questionNumber,
+        quizBrain.reset();
+
+        //TODO Step 4 Part D - empty out the scoreKeeper.
+        // scoreKeeper = [];
+      }
+
+      //TODO: Step 6 - If we've not reached the end, ELSE do the answer checking steps below 👇
+      else {
+        if (userPickedAnswer == quizBrain.getGoldAnswer()) {
+          myChoice = "gold";
+          Alert(
+              context: context,
+              title: 'Yay!',
+              desc: 'You\'ve Scored a gold',
+              content: Column(
+                children: <Widget>[
+                  Icon(
+                    Icons.star,
+                    color: Colors.yellowAccent,
+                  )
+                ],
+              ),
+              buttons: [
+//                DialogButton(
+//                  child: Text("Prev"),
+//                  onPressed: () {
+//                    quizBrain.prevQuestion();
+//                    Navigator.pop(context);
+//                  },
+//                ),
+                DialogButton(
+                  child: Text("Next"),
+                  onPressed: () {
+                    //quizBrain.nextQuestion();
+                    Navigator.pop(context);
+                  },
+                )
+              ]).show();
+        } else if (userPickedAnswer == quizBrain.getSilverAnswer()) {
+          myChoice = "silver";
+          Alert(
+              context: context,
+              title: 'Wow!',
+              desc: 'You\'ve Scored a Silver',
+              content: Column(
+                children: <Widget>[
+                  Icon(
+                    Icons.star,
+                    color: Colors.grey,
+                  )
+                ],
+              ),
+              buttons: [
+                DialogButton(
+                  child: Text("Next"),
+                  onPressed: () {
+                    //quizBrain.nextQuestion();
+                    Navigator.pop(context);
+                  },
+                )
+              ]).show();
+        } else if (userPickedAnswer == quizBrain.getBronzeAnswer()) {
+          myChoice = "bronze";
+          Alert(
+              context: context,
+              title: 'Good!',
+              desc: 'You\'ve Scored a Bronze',
+              content: Column(
+                children: <Widget>[
+                  Icon(
+                    Icons.star,
+                    color: Colors.orange,
+                  )
+                ],
+              ),
+              buttons: [
+                DialogButton(
+                  child: Text("Next"),
+                  onPressed: () {
+                    //quizBrain.nextQuestion();
+                    Navigator.pop(context);
+                  },
+                )
+              ]).show();
+        }
+      }
     });
+    if (quizBrain.isFinished() == false) {
+      quizBrain.nextQuestion();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
+    return Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          Expanded(
+            flex: 5,
+            child: Padding(
+              padding: EdgeInsets.all(10.0),
+              child: Center(
+                child: Text(
+                  quizBrain.getQuestionText(),
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 25.0,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+          ),
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.all(15.0),
+              child: FlatButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18.0),
+                    side: BorderSide(color: Colors.grey)),
+                textColor: Colors.white,
+                color: Colors.grey,
+                child: Text(
+                  quizBrain.getAnswers(0),
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18.0,
+                  ),
+                ),
+                onPressed: () {
+                  //The user picked true.
+                  checkAnswer(quizBrain.getAnswers(0));
+                  //quizBrain.nextQuestion();
+                },
+              ),
             ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
+          ),
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.all(15.0),
+              child: FlatButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18.0),
+                    side: BorderSide(color: Colors.grey)),
+                color: Colors.grey,
+                child: Text(
+                  quizBrain.getAnswers(1),
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    color: Colors.white,
+                  ),
+                ),
+                onPressed: () {
+                  //The user picked false.
+                  checkAnswer(quizBrain.getAnswers(1));
+                  //quizBrain.nextQuestion();
+                },
+              ),
+            ),
+          ),
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.all(15.0),
+              child: FlatButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18.0),
+                    side: BorderSide(color: Colors.grey)),
+                color: Colors.grey,
+                child: Text(
+                  quizBrain.getAnswers(2),
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    color: Colors.white,
+                  ),
+                ),
+                onPressed: () {
+                  //The user picked false.
+                  checkAnswer(quizBrain.getAnswers(2));
+                  //quizBrain.nextQuestion();
+                },
+              ),
+            ),
+          ),
+//        Expanded(child: _ratingBar(myChoice))
+
+//        Row(
+//          children: scoreKeeper,
+//        )
+//          Row(
+//            crossAxisAlignment: CrossAxisAlignment.center,
+//            mainAxisAlignment: MainAxisAlignment.center,
+//            children: <Widget>[
+//              SmoothStarRating(
+//                allowHalfRating: true,
+//                starCount: 1,
+//                size: 20,
+//                color: Colors.blue,
+//                borderColor: Colors.white,
+//              )
+//            ],
+//          ),
+        ]);
   }
+
+  Widget _ratingBar(String myChoice) {
+    switch (myChoice) {
+      case "gold":
+        return RatingBar(
+            itemCount: 1,
+            itemPadding: EdgeInsets.symmetric(),
+            itemBuilder: (context, index) {
+              return Icon(
+                Icons.star,
+                color: Colors.yellowAccent,
+              );
+            });
+      case "silver":
+        return RatingBar(
+            itemCount: 1,
+            itemPadding: EdgeInsets.symmetric(),
+            itemBuilder: (context, index) {
+              return Icon(
+                Icons.star,
+                color: Colors.grey,
+              );
+            });
+      case "bronze":
+        return RatingBar(
+            itemCount: 1,
+            itemPadding: EdgeInsets.symmetric(),
+            itemBuilder: (context, index) {
+              return Icon(
+                Icons.star,
+                color: Colors.orange,
+              );
+            });
+      default:
+        return Container();
+    }
+  }
+/*
+question1: 'You can lead a cow down stairs but not up stairs.', false,
+question2: 'Approximately one quarter of human bones are in the feet.', true,
+question3: 'A slug\'s blood is green.', true,
+*/
 }
