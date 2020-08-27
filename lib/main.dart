@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:io';
 //TODO: Step 2 - Import the rFlutter_Alert package here.
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:audioplayers/audio_cache.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 import 'quiz_brain.dart';
@@ -11,6 +12,11 @@ QuizBrain quizBrain = QuizBrain();
 ThemeColors themeColors = ThemeColors();
 
 void main() => runApp(Quizzler());
+
+void playsound() {
+  final player = AudioCache();
+  player.play('note7.wav');
+}
 
 class Quizzler extends StatelessWidget {
   @override
@@ -24,7 +30,7 @@ class Quizzler extends StatelessWidget {
           backgroundColor: Colors.grey.shade900,
           title: Text(
             'Manners matters',
-            style: TextStyle(color: themeColors.kombuGreen[900]),
+            style: TextStyle(color: Colors.white),
           ),
         ),
         body: SafeArea(
@@ -267,6 +273,7 @@ class _QuizPageState extends State<QuizPage> {
     return FlatButton(
       onPressed: () {
         setState(() {
+          playsound();
           checkAnswer(quizBrain.getAnswers(btnNo));
         });
       },
@@ -296,8 +303,9 @@ class _QuizPageState extends State<QuizPage> {
             Text(
               getQuestionNo(),
               style: TextStyle(
-                color: themeColors.vividBurgundy[900],
+                color: Colors.white,
                 fontWeight: FontWeight.bold,
+                fontSize: 15.0,
               ),
             ),
           ],
