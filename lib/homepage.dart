@@ -6,6 +6,7 @@ import 'package:audioplayers/audio_cache.dart';
 
 // AppBar actions
 enum ActionPage { info, settings, help }
+
 QuizBrain quizBrain = QuizBrain();
 
 class HomePage extends StatefulWidget {
@@ -253,6 +254,9 @@ class _HomePageState extends State<HomePage> {
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(18.0),
           side: BorderSide(color: Colors.grey)),
+      padding: EdgeInsets.all(10.0),
+
+      //padding: new EdgeInsets.only(left: 70.0),
       color: Colors.white,
       child: Text(
         quizBrain.getChoice(btnNo),
@@ -298,11 +302,28 @@ class _HomePageState extends State<HomePage> {
       ]),
 
       body: Container(
+          margin: EdgeInsets.all(20),
           alignment: Alignment.center,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: Text(
+                      '', // 'Hi,_______',
+                      style: TextStyle(
+                        //color: Colors.grey,
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -333,22 +354,38 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               Expanded(
-                flex: 2,
+                flex: 3,
                 child: createChoiceButton(0),
               ),
               SizedBox(
                 height: 10,
               ),
               Expanded(
-                flex: 2,
+                flex: 3,
                 child: createChoiceButton(1),
               ),
               SizedBox(
                 height: 10,
               ),
               Expanded(
-                flex: 2,
+                flex: 3,
                 child: createChoiceButton(2),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: Text(
+                      '',
+                      style: TextStyle(
+                        //color: Colors.grey,
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           )), // This trailing comma makes auto-formatting nicer for build methods.
