@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quizzler/landing_page.dart';
 
 import 'dart:io';
 //TODO: Step 2 - Import the rFlutter_Alert package here.
@@ -49,7 +50,7 @@ class MaterialPage extends StatelessWidget {
               title: "Manners Matters",
               debugShowCheckedModeBanner: false,
               theme: _buildThemeData(snapshot.data),
-              home: HomePage());
+              home: LandingPage());
         });
   }
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:frideos/frideos.dart';
 import 'package:quizzler/homepage.dart';
+import 'package:quizzler/landing_page.dart';
 
 import 'models/appstate.dart';
 import 'quiz_brain.dart';
@@ -160,8 +161,8 @@ class SummaryPage extends StatelessWidget {
             child: const Text('Home'),
             //onPressed: () => appState.tabController.value = AppTab.main,
             onPressed: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => HomePage()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => LandingPage()));
             },
           ),
         ),
