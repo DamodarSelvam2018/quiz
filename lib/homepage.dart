@@ -11,20 +11,14 @@ enum ActionPage { info, settings, help }
 QuizBrain quizBrain = QuizBrain();
 
 class HomePage extends StatefulWidget {
+  final String recordName;
+  const HomePage(this.recordName);
+
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  final myController = TextEditingController();
-  @override
-  void dispose() {
-    // Clean up the controller when the widget is removed from the
-    // widget tree.
-    myController.dispose();
-    super.dispose();
-  }
-
   @override
   void initState() {
     super.initState();
@@ -208,7 +202,7 @@ class _HomePageState extends State<HomePage> {
                   Align(
                     alignment: Alignment.topRight,
                     child: Text(
-                      '',
+                      'Hi, ${widget.recordName}',
                       style: TextStyle(
                         //color: Colors.grey,
                         fontSize: 18.0,
