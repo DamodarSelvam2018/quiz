@@ -5,6 +5,9 @@ class QuizBrain {
   int _questionNumber = 0;
   int _totalQuestionsAsked = 1;
 
+  int goldAns = 0;
+  int silverAns = 0;
+  int bronzeAns = 0;
   //int qnum = 0;
   List<Question> _questionBank = [
     //#1
@@ -163,12 +166,6 @@ class QuizBrain {
   List<int> questionsAsked = [];
 
   void nextQuestion() {
-//    if (_questionNumber < _questionBank.length - 1) {
-//      print(_questionNumber.toString() + 'in nextQuestion');
-//      print(_questionBank.length.toString() + ' _questionBank.length');
-//      _questionNumber++;
-//      print(_questionNumber.toString() + 'in nextQuestion');
-//    }
     this._questionNumber = Random().nextInt(_questionBank
         .length); //This whole segment gets a random generated index for the question to be asked
 
@@ -190,6 +187,10 @@ class QuizBrain {
 
   int questionBankLength() {
     return _questionBank.length;
+  }
+
+  getCountSummary() {
+    return [goldAns, silverAns, bronzeAns];
   }
 
   String getQuestionText() {
@@ -215,12 +216,15 @@ class QuizBrain {
       // _score++;
       //isCorrect = true;
       star = "gold";
+      goldAns++;
       print('picked the gold star ');
     } else if (selection == _questionBank[_questionNumber].silverAnswer) {
       star = "silver";
+      silverAns++;
       print('picked the silver star ');
     } else if (selection == _questionBank[_questionNumber].bronzeAnswer) {
       star = "bronze";
+      bronzeAns++;
       print('picked the bronze star ');
     }
     _totalQuestionsAsked++; //regardless, question has been asked and button has been pressed
@@ -278,6 +282,9 @@ class QuizBrain {
   void reset() {
     _questionNumber = 0;
     _totalQuestionsAsked = 1;
+    goldAns = 0;
+    silverAns = 0;
+    bronzeAns = 0;
     questionsAsked.clear();
   }
 }
