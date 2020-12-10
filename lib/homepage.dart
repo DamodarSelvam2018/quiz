@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quizzler/summary_page.dart';
 import 'quiz_brain.dart';
 import 'screens/settings.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
@@ -15,6 +16,15 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final myController = TextEditingController();
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is removed from the
+    // widget tree.
+    myController.dispose();
+    super.dispose();
+  }
+
   @override
   void initState() {
     super.initState();
@@ -24,9 +34,6 @@ class _HomePageState extends State<HomePage> {
     final player = AudioCache();
     player.play('note7.wav');
   }
-
-//  String myChoice = '';
-//  String buildWidg;
 
   void checkAnswer(String userPickedAnswer) {
     //bool correctAnswer = quizBrain.getCorrectAnswer();
@@ -46,13 +53,6 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
             buttons: [
-//                DialogButton(
-//                  child: Text("Prev"),
-//                  onPressed: () {
-//                    quizBrain.prevQuestion();
-//                    Navigator.pop(context);
-//                  },
-//                ),
               DialogButton(
                 child: Text("Next"),
                 onPressed: () {
@@ -106,136 +106,30 @@ class _HomePageState extends State<HomePage> {
               )
             ]).show();
       }
-      //sleep(const Duration(seconds: 5));
+
       if (quizBrain.getTotalQuestionsAsked() <=
           quizBrain.questionBankLength()) {
         quizBrain.nextQuestion();
       } else {
+        var arr = quizBrain.getCountSummary();
         Alert(
             context: context,
             title: 'Finished!',
             desc: 'You\'ve reached the end of the quiz.',
             buttons: [
               DialogButton(
-                child: Text("Home"),
-                onPressed: () => Navigator.pop(context),
+                child: Text("Next"),
+                //onPressed: () => Navigator.pop(context),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => SummaryPage(stats: arr)));
+                },
               )
             ]).show();
         quizBrain.reset();
       }
-      //TODO: Step 4 - Use IF/ELSE to check if we've reached the end of the quiz. If so,
-      //On the next line, you can also use if (quizBrain.isFinished()) {}, it does the same thing.
-//      if (quizBrain.isFinished() == true) {
-//        //TODO Step 4 Part A - show an alert using rFlutter_alert,
-//
-//        //This is the code for the basic alert from the docs for rFlutter Alert:
-//        //Alert(context: context, title: "RFLUTTER", desc: "Flutter is awesome.").show();
-//
-//        //Modified for our purposes:
-//        Alert(
-//            context: context,
-//            title: 'Finished!',
-//            desc: 'You\'ve reached the end of the quiz.',
-//            buttons: [
-//              DialogButton(
-//                child: Text("Home"),
-//                onPressed: () {
-//                  //quizBrain.nextQuestion();
-//                  quizBrain.reset();
-//
-//                  Navigator.pop(context);
-//                },
-//              )
-//            ]).show();
-//
-//        //TODO Step 4 Part C - reset the questionNumber,
-//        quizBrain.reset();
-//
-//        //TODO Step 4 Part D - empty out the scoreKeeper.
-//        // scoreKeeper = [];
-//      }
-
-      //TODO: Step 6 - If we've not reached the end, ELSE do the answer checking steps below 👇
-//      else {
-//        if (userPickedAnswer == quizBrain.getGoldAnswer()) {
-////          myChoice = "gold";
-//          Alert(
-//              context: context,
-//              title: 'Yay!',
-//              desc: 'You\'ve Scored a gold',
-//              content: Column(
-//                children: <Widget>[
-//                  Icon(
-//                    Icons.star,
-//                    color: Colors.yellowAccent,
-//                  )
-//                ],
-//              ),
-//              buttons: [
-////                DialogButton(
-////                  child: Text("Prev"),
-////                  onPressed: () {
-////                    quizBrain.prevQuestion();
-////                    Navigator.pop(context);
-////                  },
-////                ),
-//                DialogButton(
-//                  child: Text("Next"),
-//                  onPressed: () {
-//                    //quizBrain.nextQuestion();
-//                    Navigator.pop(context);
-//                  },
-//                )
-//              ]).show();
-//        } else if (userPickedAnswer == quizBrain.getSilverAnswer()) {
-////          myChoice = "silver";
-//          Alert(
-//              context: context,
-//              title: 'Wow!',
-//              desc: 'You\'ve Scored a Silver',
-//              content: Column(
-//                children: <Widget>[
-//                  Icon(
-//                    Icons.star,
-//                    color: Colors.grey,
-//                  )
-//                ],
-//              ),
-//              buttons: [
-//                DialogButton(
-//                  child: Text("Next"),
-//                  onPressed: () {
-//                    //quizBrain.nextQuestion();
-//                    Navigator.pop(context);
-//                  },
-//                )
-//              ]).show();
-//        } else if (userPickedAnswer == quizBrain.getBronzeAnswer()) {
-////          myChoice = "bronze";
-//          Alert(
-//              context: context,
-//              title: 'Good!',
-//              desc: 'You\'ve Scored a Bronze',
-//              content: Column(
-//                children: <Widget>[
-//                  Icon(
-//                    Icons.star,
-//                    color: Colors.orange,
-//                  )
-//                ],
-//              ),
-//              buttons: [
-//                DialogButton(
-//                  child: Text("Next"),
-//                  onPressed: () {
-//                    //quizBrain.nextQuestion();
-//                    Navigator.pop(context);
-//                  },
-//                )
-//              ]).show();
-//        }
-//        quizBrain.nextQuestion();
-//      }
     });
   }
 
@@ -314,7 +208,7 @@ class _HomePageState extends State<HomePage> {
                   Align(
                     alignment: Alignment.topRight,
                     child: Text(
-                      '', // 'Hi,_______',
+                      '',
                       style: TextStyle(
                         //color: Colors.grey,
                         fontSize: 18.0,
