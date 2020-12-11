@@ -76,9 +76,9 @@ class _FQPageState extends State<FQPage> {
                         child: Text(
                           'What is your name ?',
                           style: TextStyle(
-                              color: Colors.red,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 25),
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                          ),
                         )),
                   ],
                 ),
@@ -110,9 +110,9 @@ class _FQPageState extends State<FQPage> {
                         child: Text(
                           'Are you a boy or a girl?',
                           style: TextStyle(
-                              color: Colors.red,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 25),
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                          ),
                         )),
                   ],
                 ),
@@ -150,9 +150,9 @@ class _FQPageState extends State<FQPage> {
                         child: Text(
                           'Are you ready to play the game?',
                           style: TextStyle(
-                              color: Colors.red,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 25),
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                          ),
                         )),
                   ],
                 ),
@@ -163,8 +163,11 @@ class _FQPageState extends State<FQPage> {
                       height: 50,
                       padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
                       child: RaisedButton(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(18.0),
+                            side: BorderSide(color: Colors.green)),
                         textColor: Colors.white,
-                        color: Colors.red,
+                        color: Colors.grey,
                         child: Text('No'),
                         onPressed: () {
                           Navigator.push(
@@ -178,8 +181,11 @@ class _FQPageState extends State<FQPage> {
                       height: 50,
                       padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
                       child: RaisedButton(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(18.0),
+                            side: BorderSide(color: Colors.green)),
                         textColor: Colors.white,
-                        color: Colors.red,
+                        color: Colors.amber,
                         child: Text('Yes'),
                         onPressed: () {
                           Navigator.push(

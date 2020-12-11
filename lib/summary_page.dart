@@ -17,6 +17,34 @@ class SummaryPage extends StatelessWidget {
 
   List<Widget> _buildQuestions() {
     final widgets = List<Widget>();
+
+    widgets
+      ..add(
+        Row(
+          children: <Widget>[
+            Container(
+              padding: const EdgeInsets.all(8.0),
+              height: 60,
+              //color: Colors.indigo[700],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    'Your results are below:',
+                    style: TextStyle(
+                      //color: Colors.grey,
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    //style: correctsHeaderStyle,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      );
+
     if (stats[0] != 0) {
       print('${stats[0]} gold stars');
       widgets
@@ -25,13 +53,18 @@ class SummaryPage extends StatelessWidget {
             children: <Widget>[
               Container(
                 padding: const EdgeInsets.all(8.0),
-                height: 32,
+                height: 50,
                 //color: Colors.indigo[700],
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     Text(
                       'Gold Star(',
+                      style: TextStyle(
+                        //color: Colors.grey,
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.bold,
+                      ),
                       //style: correctsHeaderStyle,
                     ),
                     Icon(
@@ -39,7 +72,12 @@ class SummaryPage extends StatelessWidget {
                       color: Colors.yellowAccent,
                     ),
                     Text(
-                      '): ${stats[0]}',
+                      '): ${stats[0]} /${stats[0] + stats[1] + stats[2]}',
+                      style: TextStyle(
+                        //color: Colors.grey,
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.bold,
+                      ),
                       //style: correctsHeaderStyle,
                     ),
                   ],
@@ -58,13 +96,18 @@ class SummaryPage extends StatelessWidget {
             children: <Widget>[
               Container(
                 padding: const EdgeInsets.all(8.0),
-                height: 32,
+                height: 50,
                 //color: Colors.indigo[700],
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     Text(
                       'Silver Star(',
+                      style: TextStyle(
+                        //color: Colors.grey,
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.bold,
+                      ),
                       //style: correctsHeaderStyle,
                     ),
                     Icon(
@@ -72,7 +115,12 @@ class SummaryPage extends StatelessWidget {
                       color: Colors.grey,
                     ),
                     Text(
-                      '): ${stats[1]}',
+                      '): ${stats[1]} /${stats[0] + stats[1] + stats[2]}',
+                      style: TextStyle(
+                        //color: Colors.grey,
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.bold,
+                      ),
                       //style: correctsHeaderStyle,
                     ),
                   ],
@@ -91,13 +139,18 @@ class SummaryPage extends StatelessWidget {
             children: <Widget>[
               Container(
                 padding: const EdgeInsets.all(8.0),
-                height: 32,
+                height: 50,
                 //color: Colors.indigo[700],
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     Text(
                       'Bronze Star(',
+                      style: TextStyle(
+                        //color: Colors.grey,
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.bold,
+                      ),
                       //style: correctsHeaderStyle,
                     ),
                     Icon(
@@ -105,7 +158,12 @@ class SummaryPage extends StatelessWidget {
                       color: Colors.orange,
                     ),
                     Text(
-                      '): ${stats[2]}',
+                      '): ${stats[2]} /${stats[0] + stats[1] + stats[2]}',
+                      style: TextStyle(
+                        //color: Colors.grey,
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.bold,
+                      ),
                       //style: correctsHeaderStyle,
                     ),
                   ],
@@ -136,6 +194,11 @@ class SummaryPage extends StatelessWidget {
             child: Align(
               alignment: Alignment.bottomCenter,
               child: RaisedButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18.0),
+                    side: BorderSide(color: Colors.green)),
+                textColor: Colors.white,
+                color: Colors.grey,
                 child: const Text('Home'),
                 //onPressed: () => appState.tabController.value = AppTab.main,
                 onPressed: () {
@@ -152,6 +215,11 @@ class SummaryPage extends StatelessWidget {
             child: Align(
               alignment: Alignment.bottomCenter,
               child: RaisedButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18.0),
+                    side: BorderSide(color: Colors.green)),
+                textColor: Colors.white,
+                color: Colors.amber,
                 child: const Text('Quit'),
                 onPressed: () => exit(0),
               ),
