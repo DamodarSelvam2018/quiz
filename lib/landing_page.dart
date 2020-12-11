@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quizzler/summary_page.dart';
+import 'package:MannersMatters/summary_page.dart';
 import 'free_question.dart';
 import 'homepage.dart';
 import 'quiz_brain.dart';

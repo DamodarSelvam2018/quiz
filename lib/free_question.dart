@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:quizzler/homepage.dart';
-import 'package:quizzler/landing_page.dart';
-import 'package:quizzler/summary_page.dart';
+import 'package:MannersMatters/homepage.dart';
+import 'package:MannersMatters/landing_page.dart';
+import 'package:MannersMatters/summary_page.dart';
 import 'quiz_brain.dart';
 import 'screens/settings.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quizzler/summary_page.dart';
+import 'package:MannersMatters/summary_page.dart';
 import 'quiz_brain.dart';
 import 'screens/settings.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
@@ -202,7 +202,9 @@ class _HomePageState extends State<HomePage> {
                   Align(
                     alignment: Alignment.topRight,
                     child: Text(
-                      'Hi, ${widget.recordName}',
+                      widget.recordName == null
+                          ? 'Hi, '
+                          : 'Hi, ${widget.recordName}',
                       style: TextStyle(
                         //color: Colors.grey,
                         fontSize: 18.0,

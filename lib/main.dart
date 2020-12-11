@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quizzler/landing_page.dart';
+import 'package:MannersMatters/landing_page.dart';
 
 import 'dart:io';
 //TODO: Step 2 - Import the rFlutter_Alert package here.
