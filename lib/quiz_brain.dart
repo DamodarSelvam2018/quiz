@@ -8,12 +8,13 @@ class QuizBrain {
   int goldAns = 0;
   int silverAns = 0;
   int bronzeAns = 0;
+
   //int qnum = 0;
   List<Question> _questionBank = [
     //#1
     Question(
         'What do you do with waste paper?',
-        ['Throw in dustbin', 'Give it to mommy', 'Throw it on the ground'],
+        ['Throw in dustbin', 'Throw it on the ground', 'Give it to mommy'],
         'Throw in dustbin',
         'Give it to mommy',
         'Throw it on the ground'),
@@ -21,27 +22,27 @@ class QuizBrain {
     Question(
         'What do you do when you meet a friend?',
         ['Look away', 'Smile and say \'Hi\'', 'Run'],
-        'Look away',
         'Smile and say \'Hi\'',
+        'Look away',
         'Run'),
     //#3
     Question(
         'When I am bored?',
         ['Run around', 'Ask mommy/daddy for an activity', 'Eat candies'],
-        'Run around',
         'Ask mommy/daddy for an activity',
+        'Run around',
         'Eat candies'),
     //#4
     Question(
         'When crossing a road, I',
         [
           'Hold parent’s hand and watch out for vehicles before crossing',
-          'Play football on the road',
+          'Close My Eyes',
           'Don’t look around and run'
         ],
         'Hold parent’s hand and watch out for vehicles before crossing',
-        'Play football on the road',
-        'Don’t look around and run'),
+        'Don’t look around and run',
+        'Close My Eyes'),
     //#5
     Question(
         'When my toys are scattered on the floor?',
@@ -51,8 +52,8 @@ class QuizBrain {
           'I walk on them'
         ],
         'I clean up the toys ',
-        'I throw some more toys on the floor',
-        'I walk on them'),
+        'I walk on them',
+        'I throw some more toys on the floor'),
     //#6
     Question(
         'When I come home from outside, I',
@@ -61,9 +62,9 @@ class QuizBrain {
           'Throw away my shoes and sit on the couch',
           'Wash my hands and face and wipe with a clean towel'
         ],
+        'Wash my hands and face and wipe with a clean towel',
         'Pick up a food item and start eating',
-        'Throw away my shoes and sit on the couch',
-        'Wash my hands and face and wipe with a clean towel'),
+        'Throw away my shoes and sit on the couch'),
     //#7
     Question(
         'Greeting people outside if we come across someone.',
@@ -86,31 +87,31 @@ class QuizBrain {
     Question(
         'When I cough or sneeze.?',
         [
-          'I cover my face',
           'I sneeze right on the floor',
-          'I run to the bathroom'
+          'I run to the bathroom',
+          'I cover my face',
         ],
         'I cover my face',
-        'I sneeze right on the floor',
-        'I run to the bathroom'),
+        'I run to the bathroom',
+        'I sneeze right on the floor'),
     //#10
     Question(
         'When adults are talking to each other or on phone, I',
         [
           'Make noise and run around',
           'Keep talking to them',
-          'Throw it on the ground'
+          'Say \'Excuse me\', and then start talking'
         ],
-        'Make noise and run around',
+        'Say \'Excuse me\', and then start talking',
         'Keep talking to them',
-        'Say \'Excuse me\', and then start talking'),
+        'Make noise and run around'),
     //#11
     Question(
         'When someone sneezes',
         ['Say \'Bless You\'', 'Sneeze back', 'Turn your face'],
         'Say \'Bless You\'',
-        'Sneeze back',
-        'Turn your face'),
+        'Turn your face',
+        'Sneeze back'),
     //#12
     Question(
         'When you want to access other children’s toys',
@@ -125,32 +126,29 @@ class QuizBrain {
     //#13
     Question(
         'When you request someone for something, you say',
-        [
-          'Please, can I have it?\'',
-          'Grab the item and run',
-          'Cry for the item'
-        ],
+        ['Please, can I have it?\'', 'Take the item', 'Cry for the item'],
         'Please, can I have it?\'',
-        'Grab the item and run',
+        'Take the item',
         'Cry for the item'),
     //#14
     Question(
         'When someone has helped you, you say',
-        ['\'Thank You\'', 'Ignore and leave', 'Cry for another item'],
+        ['Ignore and leave', '\'Thank You\'', 'Cry for another item'],
         '\'Thank You\'',
         'Ignore and leave',
         'Cry for another item'),
     //#15
     Question(
-        'Cleaning up the toys after playing ( both at home and at other\'s places)',
-        [
-          'Help mom/dad to cleanup toys on the floor',
-          'Scatter more toys',
-          'Keep playing'
-        ],
+      'Cleaning up the toys after playing, I',
+      [
         'Help mom/dad to cleanup toys on the floor',
         'Scatter more toys',
-        'Keep playing'),
+        'Still Keep playing'
+      ],
+      'Help mom/dad to cleanup toys on the floor',
+      'Still Keep playing',
+      'Scatter more toys',
+    ),
     //#16
     Question(
         'When I want something in classroom, I,',
