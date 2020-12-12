@@ -21,14 +21,14 @@ class QuizBrain {
     //#2
     Question(
         'What do you do when you meet a friend?',
-        ['Look away', 'Smile and say \'Hi\'', 'Run'],
+        ['Smile and say \'Hi\'', 'Look away', 'Run'],
         'Smile and say \'Hi\'',
         'Look away',
         'Run'),
     //#3
     Question(
         'When I am bored?',
-        ['Run around', 'Ask mommy/daddy for an activity', 'Eat candies'],
+        ['Ask mommy/daddy for an activity', 'Run around', 'Eat candies'],
         'Ask mommy/daddy for an activity',
         'Run around',
         'Eat candies'),
@@ -37,8 +37,8 @@ class QuizBrain {
         'When crossing a road, I',
         [
           'Hold parent’s hand and watch out for vehicles before crossing',
-          'Close My Eyes',
-          'Don’t look around and run'
+          'Don’t look around and run',
+          'Close My Eyes'
         ],
         'Hold parent’s hand and watch out for vehicles before crossing',
         'Don’t look around and run',
@@ -48,8 +48,8 @@ class QuizBrain {
         'When my toys are scattered on the floor?',
         [
           'I clean up the toys ',
-          'I throw some more toys on the floor',
-          'I walk on them'
+          'I walk on them',
+          'I throw some more toys on the floor'
         ],
         'I clean up the toys ',
         'I walk on them',
@@ -58,9 +58,9 @@ class QuizBrain {
     Question(
         'When I come home from outside, I',
         [
+          'Wash my hands and face and wipe with a clean towel',
           'Pick up a food item and start eating',
-          'Throw away my shoes and sit on the couch',
-          'Wash my hands and face and wipe with a clean towel'
+          'Throw away my shoes and sit on the couch'
         ],
         'Wash my hands and face and wipe with a clean towel',
         'Pick up a food item and start eating',
@@ -87,9 +87,9 @@ class QuizBrain {
     Question(
         'When I cough or sneeze.?',
         [
-          'I sneeze right on the floor',
-          'I run to the bathroom',
           'I cover my face',
+          'I run to the bathroom',
+          'I sneeze right on the floor'
         ],
         'I cover my face',
         'I run to the bathroom',
@@ -98,9 +98,9 @@ class QuizBrain {
     Question(
         'When adults are talking to each other or on phone, I',
         [
+          'Say \'Excuse me\', and then start talking',
           'Make noise and run around',
-          'Keep talking to them',
-          'Say \'Excuse me\', and then start talking'
+          'Keep talking to them'
         ],
         'Say \'Excuse me\', and then start talking',
         'Keep talking to them',
@@ -133,7 +133,7 @@ class QuizBrain {
     //#14
     Question(
         'When someone has helped you, you say',
-        ['Ignore and leave', '\'Thank You\'', 'Cry for another item'],
+        ['\'Thank You\'', 'Ignore and leave', 'Cry for another item'],
         '\'Thank You\'',
         'Ignore and leave',
         'Cry for another item'),

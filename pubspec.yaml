@@ -17,15 +17,25 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+  flutter_launcher_icons: ^0.7.2
   flutter_rating_bar:
   smooth_star_rating: 1.1.1
   frideos: ^0.4.0+2
   audioplayers: ^0.10.0
   path_provider: ^0.5.0
+  flutter_launcher_name: "^0.0.1"
 
 flutter:
   uses-material-design: true
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/App_Icon.png"
+  adaptive_icon_background: "#0000e5"
+
+flutter_launcher_name:
+  name: "Manners Matter"
 
   assets:
     - assets/
